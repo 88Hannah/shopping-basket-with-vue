@@ -35,33 +35,45 @@
 
             return {
 
+                basketProducts: []
+
             }
             
         },
         
         methods: {          
+
             addProduct: function (id) {
-                this.products[this.products.findIndex(item => item.itemId === id)].quantity ++;
+                let basketIndex = this.basketProducts.findIndex(item => item.itemId === id);
+
+                if (basketIndex >= 0) {
+                    this.basketProducts[basketIndex].quantity ++;
+                } else {
+                    let newItem = this.products[this.products.findIndex(item => item.itemId === id)];
+                    this.basketProducts.push({ ...newItem, quantity: 1})
+                }
+
             }, 
 
             removeProduct: function (id) {
-                if(this.products[this.products.findIndex(item => item.itemId === id)].quantity > 0) {
-                this.products[this.products.findIndex(item => item.itemId === id)].quantity --;
+                let basketIndex = this.basketProducts.findIndex(item => item.itemId === id);
+
+                if(this.basketProducts[basketIndex].quantity === 1) {
+                    this.basketProducts.splice(basketIndex, 1);
+                } else if(this.basketProducts[basketIndex].quantity > 1) {
+                    this.basketProducts[basketIndex].quantity --;
                 }
             }           
   
         },
 
         computed: {
-            basketProducts: function () {
-                return this.products.filter(item => item.quantity > 0);
-            }, 
 
             subTotal: function () {
                 const getSubTotal = (sum, item) => {
                     return sum + (item.price * item.quantity);
                 }
-                return (this.products.reduce(getSubTotal, 0));
+                return (this.basketProducts.reduce(getSubTotal, 0));
             },
 
             total: function () {
