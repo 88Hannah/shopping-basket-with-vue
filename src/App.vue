@@ -36,49 +36,42 @@
             name: 'Blue Board',
             price: 5.79,
             image: blue,
-            quantity: 0,
             itemId: 1
           }, 
           {
             name: 'Green Garden',
             price: 8.35,
             image: green,
-            quantity: 0,
             itemId: 2
           },
           {
             name: 'Orange Orange',
             price: 4.50,
             image: orange,
-            quantity: 0,
             itemId: 3
           },
           {
             name: 'Pink Pinapple',
             price: 7.29,
             image: pink,
-            quantity: 0,
             itemId: 4
           },
           {
             name: 'Purple Petals',
             price: 6.85,
             image: purple,
-            quantity: 0,
             itemId: 5
           },
           {
             name: 'Red Robes',
             price: 9.50,
             image: red,
-            quantity: 0,
             itemId: 6
           },
           {
             name: 'Yummy Yellow',
             price: 3.89,
             image: yellow,
-            quantity: 0,
             itemId: 7
           }
         ]
