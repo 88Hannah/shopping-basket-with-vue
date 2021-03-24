@@ -81,7 +81,9 @@
             },
 
             shipping: function () {
-                if (this.subTotal > 0) {
+                if (this.subTotal === 0) {
+                    return 0;
+                } else if (this.subTotal < 50) {
                     return 4.99;
                 } else {
                     return 0;
