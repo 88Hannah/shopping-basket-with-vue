@@ -1,4 +1,5 @@
 # vue-shopping-basket
+This is my first project built using Vue!
 
 ## Project setup
 ```
