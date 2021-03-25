@@ -10,6 +10,8 @@
         <summary-item text="Sub-total" :amount="subTotal"></summary-item>
         <summary-item text="Shipping" :amount="shipping"></summary-item>
         <summary-item text="Total" :amount="total" :featured="true"></summary-item>
+        <p v-if="untilFreeShipping > 0" class="shipping-message shipping-message__cost">Spend another £{{ untilFreeShipping.toFixed(2) }} to get free shipping</p>
+        <p v-else class="shipping-message shipping-message__free">You have qualified for free shipping</p>
     </div>
 </template>
 
@@ -77,7 +79,9 @@
             },
 
             total: function () {
-                return (this.subTotal + this.shipping);
+                if (typeof(shipping) === 'number') {
+                    return (this.subTotal + this.shipping);
+                } else return this.subTotal;
             },
 
             shipping: function () {
@@ -86,8 +90,15 @@
                 } else if (this.subTotal < 50) {
                     return 4.99;
                 } else {
-                    return 0;
+                    return 'Free';
                 }
+            }, 
+
+            untilFreeShipping: function () {
+                let difference = 50 - this.subTotal;
+                if (difference > 0) {
+                    return difference;
+                } else return 0;
             }
     
         }
@@ -96,5 +107,15 @@
 
 
 <style scoped>
+    .shipping-message {
+        text-align: right;
+    }
 
+    .shipping-message__cost {
+        color: red;
+    }
+
+    .shipping-message__free {
+        color: green;
+    }
 </style>

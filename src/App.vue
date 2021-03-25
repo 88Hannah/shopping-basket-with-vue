@@ -112,4 +112,8 @@
     cursor: pointer;
   }
 
+  h1 {
+    text-align: center;
+  }
+
 </style>
